@@ -24,6 +24,13 @@ python average_and_substract.py --help
 ```
 Example run with plot and 'bubbles skipping'
 ```
-average_and_substract.py -s 490 -e 495  -f 1 -b ls2863_saxs_00479_0001_var_ave.dat
+python average_and_substract.py -s 490 -e 495  -f 1 -b ls2863_saxs_00479_0001_var_ave.dat
 ```
 
+### Extracts time points from stopped-flow measurements
+Extracts elapsed times from the log file and substarcts 5ms (set a as a default for measurements)
+To run the script simply type:
+```
+python extract_times.py saxs2_saxs_20181121.log > samples_times.txt
+```
+Returns frame and subframe and corresponding time point
