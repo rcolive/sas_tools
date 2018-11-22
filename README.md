@@ -7,6 +7,11 @@ Scripts will be mantained as requsted.
 For the basic functionality requires python and numpy package only
 
 ## Scripts
+The code for scripts is hosted on github. 
+They can be downloaded directly from there or can be cloned to your computer
+```
+git clone https://github.com/Andre-lab/sas_tools.git
+```
 
 ### Average and substract
 Averaging frames from the given range and substracts buffer. 
