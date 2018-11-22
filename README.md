@@ -4,7 +4,7 @@ with minimum maintanace effort.
 Scripts will be mantained as requsted. 
 
 ## Instalation
-For the basic functionality requires python and numpy package
+For the basic functionality requires python and numpy package only
 
 ## Scripts
 
