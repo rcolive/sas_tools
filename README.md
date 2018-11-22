@@ -2,7 +2,8 @@
 Simple SAXS/SANS utilities for data processing and visualisation 
 with minimum maintanace effort.
 Scripts will be mantained as requsted. 
-##Instalation
+
+## Instalation
 For the basic functionality requires python and numpy package
 
 ## Scripts
