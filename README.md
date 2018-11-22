@@ -6,6 +6,7 @@ Scripts will be mantained as requsted.
 For the basic functionality requires python and numpy package
 
 ## Scripts
+
 ### Average and substract
 Averaging frames from the given range and substracts buffer. 
 It may also remove frames with bubbles and plot final intensity
