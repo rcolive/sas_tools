@@ -5,8 +5,9 @@ Scripts will be mantained as requsted.
 ##Instalation
 For the basic functionality requires python and numpy package
 
-##Scripts
-###Average and substract
+## Scripts
+
+### Average and substract
 Averaging frames from the given range and substracts buffer. 
 It may also remove frames with bubbles and plot final intensity
 Skipping bubbles requires however installing AutoRg from Atsas 
