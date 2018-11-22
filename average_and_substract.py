@@ -73,7 +73,7 @@ if __name__ == "__main__":
     parser.add_option("-b", "--buffer_file", dest="buffer_file", default=None,
                       help="Buffer file name to substarct[OBLIGATORY]")
     parser.add_option("-k", "--skip_bubbles", dest="skip_bubbles", action="store_true",
-                      help="Wheteher to skip bubbles or not [Requires AutoRg from Atsas Package installed]")
+                      help="Wheteher to skip bubbles or not")
     parser.add_option("-p", "--show_plot", dest="show_plot", action="store_true",
                       help="Plots intensity")
     options, args = parser.parse_args()
@@ -91,7 +91,7 @@ if __name__ == "__main__":
     if (sys.argv[4]) == 'skip_bubbles':
         skip_bubbles = True
 
-
+    cut_off = 1.5
     combined_intensity = []
     combined_errors = []
     valid_samples = 0
@@ -101,7 +101,8 @@ if __name__ == "__main__":
     buffer_errors = buffer[:, 2]
     buffer_intensity = buffer[:, 1]
     valid_curves = 0
-    for experimental_file in experimental_files:
+    baseline_curve = False
+    for index, experimental_file in enumerate(experimental_files):
 
         if 'ave.dat' in experimental_file:
             continue
@@ -137,15 +138,24 @@ if __name__ == "__main__":
             #Filter out bubbles with very simple criteria
             substracted_intensity = intensity - buffer_intensity
             substracted_errors = np.sqrt(buffer_errors ** 2 + errors ** 2)
+            #TODO: Setting baseline for the first curve, which may be bit riskty
+            if baseline_curve==False:
+                baseline = np.sum(substracted_intensity[:10])
+                baseline_curve = True
+            else:
+                sum_si = np.sum(substracted_intensity[:10])
+                if sum_si - baseline > cut_off:
+                    print("Skipping bubble file " + experimental_file)
+                    continue
             #if (substracted_intensity[2]-substracted_intensity[1])> cutoff_set:
             #    continue
-            np.savetxt('tmp.txt', np.transpose([qvector, substracted_intensity,substracted_errors]))
-            proc = subprocess.Popen(["autorg tmp.txt"], stdout=subprocess.PIPE, shell=True)
-            (out, err) = proc.communicate()
-            out_string = str(out)
-            if out_string=="b\'\'":
-                print("Skipping bubble file "+experimental_file)
-                continue
+            # np.savetxt('tmp.txt', np.transpose([qvector, substracted_intensity,substracted_errors]))
+            # proc = subprocess.Popen(["autorg tmp.txt"], stdout=subprocess.PIPE, shell=True)
+            # (out, err) = proc.communicate()
+            # out_string = str(out)
+            # if out_string=="b\'\'":
+            #     print("Skipping bubble file "+experimental_file)
+            #     continue
 
         combined_intensity.append(intensity)
         combined_errors.append(errors)

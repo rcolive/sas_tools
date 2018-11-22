@@ -16,8 +16,8 @@ git clone https://github.com/Andre-lab/sas_tools.git
 ### Average and substract
 Averaging frames from the given range and substracts buffer. 
 It may also remove frames with bubbles and plot final intensity
-Skipping bubbles requires however installing AutoRg from Atsas 
-package in 
+Skipping bubbles is based on the sum of the first 10 points. 
+It is experimental feature, so be careful when playing with it
 Run command bellow to see what are the options
 ```
 python average_and_substract.py --help
